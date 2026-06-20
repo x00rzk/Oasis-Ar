@@ -1,0 +1,7 @@
+{
+  "name": "Oasis-Ar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
