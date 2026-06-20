@@ -1,2 +1,16 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
+
+body.ar-active ion-router-outlet,
+body.ar-active ion-content {
+    --background: transparent;
+}
+
+.ar-active a-scene {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
