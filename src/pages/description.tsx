@@ -7,10 +7,12 @@ const Description: React.FC = () => {
         <IonPage>
             <IonContent fullscreen className="ion-padding ion-text-center">
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
-                    <h2>Sobre la app</h2>
-                    <p>Aquí va la descripción de tu aplicación de realidad aumentada.</p>
+                    <h2>¿Cómo funciona?</h2>
+                    <p>Trata de hablar con voz fuerte y clara hacia el celular.</p>
+                    <p>La mascota virtual tratará de responder respecto al tema que quieras hablar.</p>
+                    <p>Cuando quieras terminar la conversación solo di “quiero salir”, con esto la conversación terminará.</p>
                     <IonButton expand="block" onClick={() => history.push('/ar')}>
-                        Iniciar sesión
+                        Iniciar nueva sesión
                     </IonButton>
                 </div>
             </IonContent>

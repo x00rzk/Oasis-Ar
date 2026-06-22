@@ -1,16 +1,27 @@
-/* For information on how to create your own theme, please refer to:
-http://ionicframework.com/docs/theming/ */
+:root {
+    --color-bg: #f6eddf;
+    --color-card: #FAF6F2;
+    --color-accent: #dab692;
 
-body.ar-active ion-router-outlet,
-body.ar-active ion-content {
-    --background: transparent;
-}
+    --font-display: 'Dela Gothic One', system-ui, sans-serif;
+    --font-body: 'Montserrat', -apple-system, sans-serif;
 
-.ar-active a-scene {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
+    --ion-background-color: var(--color-bg);
+    --ion-background-color-rgb: 246, 237, 223;
+
+    --ion-text-color: #000000;
+    --ion-text-color-rgb: 0, 0, 0;
+
+    --ion-color-primary: #dab692;
+    --ion-color-primary-rgb: 218, 182, 146;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #c0a080;
+    --ion-color-primary-tint: #dec49e;
+
+    --ion-toolbar-background: var(--color-bg);
+    --ion-item-background: transparent;
+    --ion-border-color: rgba(218, 182, 146, 0.3);
+
+    --ion-font-family: var(--font-body);
 }
