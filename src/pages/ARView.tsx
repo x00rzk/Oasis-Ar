@@ -1,3 +1,4 @@
+import { IonPage } from "@ionic/react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -63,10 +64,19 @@ const ARView: React.FC = () => {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ width: "100%", height: "100vh", position: "relative" }}
-    />
+    <IonPage>
+      <div
+        ref={containerRef}
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 9999,
+        }}
+      />
+    </IonPage>
   );
 };
 

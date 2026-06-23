@@ -48,7 +48,9 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route exact path="/welcome" component={Welcome} />
         <Route exact path="/description" component={Description} />
-        <Route exact path="/ar" component={ARView} />
+        <Route exact path="/ar">
+          <ARView />
+        </Route>
         <Route exact path="/">
           <Redirect to="/welcome" />
         </Route>
