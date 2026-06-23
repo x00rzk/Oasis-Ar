@@ -22,10 +22,12 @@
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "ionicons": "^7.4.0",
+    "mind-ar": "^1.2.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "three": "^0.148.0"
   },
   "devDependencies": {
     "@capacitor/cli": "8.4.1",
@@ -35,6 +37,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
+    "@types/three": "^0.184.1",
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-react": "^4.0.1",
     "cypress": "^13.5.0",
@@ -50,5 +53,10 @@
     "vite": "^5.0.0",
     "vitest": "^0.34.6"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "allowScripts": {
+    "core-js@3.49.0": true,
+    "cypress@13.17.0": true,
+    "esbuild@0.21.5": true
+  }
 }

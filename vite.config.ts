@@ -6,6 +6,9 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    exclude: ["mind-ar", "canvas"],
+  },
   plugins: [
     react(),
     legacy()
