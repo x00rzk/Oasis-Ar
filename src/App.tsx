@@ -35,7 +35,10 @@ import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
-//import './theme/variables.css';
+import './theme/material.css';
+
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
 
 setupIonicReact();
 
