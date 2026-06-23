@@ -31,6 +31,10 @@ const ARView: React.FC = () => {
       mindarThreeRef.current = new MindARThree({
         container: containerRef.current!,
         imageTargetSrc: "/targets/card.mind",
+        filterMinCF: 0.0001,
+        filterBeta: 0.001,
+        missTolerance: 5,
+        warmupTolerance: 5,
       });
 
       const { renderer, scene, camera } = mindarThreeRef.current;
