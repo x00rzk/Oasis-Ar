@@ -36,6 +36,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/material.css';
+import './theme/app.css'
 
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";

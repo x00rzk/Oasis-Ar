@@ -1,4 +1,4 @@
-import { IonPage } from "@ionic/react";
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, useIonViewWillLeave } from "@ionic/react";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -7,23 +7,34 @@ import { MindARThree } from "mind-ar/dist/mindar-image-three.prod.js";
 const ARView: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasStarted = useRef(false);
+  const mindarThreeRef = useRef<InstanceType<typeof MindARThree> | null>(null);
+  const startedRef = useRef(false);
+
+  useIonViewWillLeave(() => {
+    if (mindarThreeRef.current && startedRef.current) {
+      mindarThreeRef.current.renderer.setAnimationLoop(null);
+      mindarThreeRef.current.stop();
+      mindarThreeRef.current = null;
+      startedRef.current = false;
+      hasStarted.current = false;
+    }
+
+    // Manually remove MindAR's body-level injected overlays
+    document.querySelectorAll(".mindar-ui-overlay").forEach((el) => el.remove());
+  });
 
   useEffect(() => {
     if (hasStarted.current) return;
     hasStarted.current = true;
 
-    let mindarThree: InstanceType<typeof MindARThree> | null = null;
-    let started = false;
-
     const start = async () => {
-      mindarThree = new MindARThree({
+      mindarThreeRef.current = new MindARThree({
         container: containerRef.current!,
         imageTargetSrc: "/targets/card.mind",
       });
 
-      const { renderer, scene, camera } = mindarThree;
+      const { renderer, scene, camera } = mindarThreeRef.current;
 
-      // Lighting fixes
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
 
@@ -31,12 +42,10 @@ const ARView: React.FC = () => {
       directionalLight.position.set(0, 1, 1);
       scene.add(directionalLight);
 
-      // Color space fix
       renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-      const anchor = mindarThree.addAnchor(0);
+      const anchor = mindarThreeRef.current.addAnchor(0);
 
-      // Load GLB model
       const loader = new GLTFLoader();
       loader.load("/models/flowy.glb", (gltf) => {
         const model = gltf.scene;
@@ -45,8 +54,8 @@ const ARView: React.FC = () => {
         anchor.group.add(model);
       });
 
-      await mindarThree.start();
-      started = true;
+      await mindarThreeRef.current.start();
+      startedRef.current = true;
 
       renderer.setAnimationLoop(() => {
         renderer.render(scene, camera);
@@ -56,9 +65,9 @@ const ARView: React.FC = () => {
     start();
 
     return () => {
-      if (mindarThree && started) {
-        mindarThree.renderer.setAnimationLoop(null);
-        mindarThree.stop();
+      if (mindarThreeRef.current && startedRef.current) {
+        mindarThreeRef.current.renderer.setAnimationLoop(null);
+        mindarThreeRef.current.stop();
       }
     };
   }, []);
@@ -73,9 +82,24 @@ const ARView: React.FC = () => {
           position: "absolute",
           top: 0,
           left: 0,
-          zIndex: 9999,
+          zIndex: 0,
         }}
       />
+
+      <IonHeader
+        style={{
+          position: "relative",
+          zIndex: 99999,
+          pointerEvents: "all",
+        }}
+      >
+        <IonToolbar style={{ "--background": "transparent", "--border-width": "0" }}>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/description" style={{ pointerEvents: "all" }} />
+          </IonButtons>
+          <IonTitle style={{ color: "white" }}>Sesión AR</IonTitle>
+        </IonToolbar>
+      </IonHeader>
     </IonPage>
   );
 };
