@@ -10,7 +10,7 @@ const Description: React.FC = () => {
                     <h2>¿Cómo funciona?</h2>
                     <p>Trata de hablar con voz fuerte y clara hacia el celular.</p>
                     <p>La mascota virtual tratará de responder respecto al tema que quieras hablar.</p>
-                    <p>Cuando quieras terminar la conversación solo di “quiero salir”, con esto la conversación terminará.</p>
+                    <p>Cuando quieras terminar la conversación solo presiona el boton de cerrar, con esto la conversación terminará.</p>
                     <IonButton expand="block" onClick={() => history.push('/ar')}>
                         Iniciar nueva sesión
                     </IonButton>

@@ -5,6 +5,10 @@ import Home from './pages/Home';
 import Welcome from './pages/welcome';
 import Description from './pages/description';
 import ARView from './pages/ARView';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+
+
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -47,13 +51,14 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/welcome" component={Welcome} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/description" component={Description} />
         <Route exact path="/ar">
           <ARView />
         </Route>
         <Route exact path="/">
-          <Redirect to="/welcome" />
+          <Redirect to="/signup" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
