@@ -5,10 +5,8 @@ import Welcome from './pages/Welcome';
 import Description from './pages/description';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import TermsAndConditions from './pages/TermsAndConditions';
 import ARView from './pages/ARView';
-
-
-
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,12 +36,10 @@ import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
-import './theme/material.css';
-import './theme/app.css'
+import './theme/global.css'
 
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
-import TermsAndConditions from './pages/TermsAndConditions';
 
 setupIonicReact();
 
@@ -60,7 +56,7 @@ const App: React.FC = () => (
           <ARView />
         </Route>
         <Route exact path="/">
-          <Redirect to="/login" />
+          <Redirect to="/welcome" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
