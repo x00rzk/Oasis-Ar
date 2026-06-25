@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
     IonPage,
@@ -7,6 +7,7 @@ import {
     IonButton,
     IonRouterLink,
     IonNote,
+    IonCheckbox,
 } from "@ionic/react";
 import { signUpReducer, initialState } from "../reducers/signUpReducer";
 
@@ -20,6 +21,8 @@ const SignUp: React.FC = () => {
     const [state, dispatch] = useReducer(signUpReducer, initialState);
     const { username, email, password, confirmPassword, errors } = state;
     const history = useHistory();
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [termsError, setTermsError] = useState("");
 
     const handleSubmit = async () => {
         const newErrors = { username: "", email: "", password: "", confirmPassword: "" };
@@ -46,11 +49,17 @@ const SignUp: React.FC = () => {
             valid = false;
         }
 
+        if (!acceptedTerms) {
+            setTermsError("Debes aceptar los Términos y Condiciones para continuar");
+            valid = false;
+        } else {
+            setTermsError("");
+        }
+
         dispatch({ type: "SET_ERRORS", payload: newErrors });
 
         if (!valid) return;
 
-        // --- Enviar datos al backend ---
         try {
             const response = await fetch("http://localhost/Oasis_Users_Backend/signup.php", {
                 method: "POST",
@@ -153,6 +162,29 @@ const SignUp: React.FC = () => {
                         style={{ display: "block", fontSize: "0.8rem", marginTop: 6, paddingLeft: 4 }}
                     >
                         {password === confirmPassword ? "✓ Las contraseñas coinciden" : "✗ Las contraseñas no coinciden"}
+                    </IonNote>
+                )}
+
+                {/* Terms and Conditions checkbox */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 16 }}>
+                    <IonCheckbox
+                        checked={acceptedTerms}
+                        onIonChange={(e) => {
+                            setAcceptedTerms(e.detail.checked);
+                            if (e.detail.checked) setTermsError("");
+                        }}
+                    />
+                    <span style={{ fontSize: "0.9rem" }}>
+                        He leído y estoy de acuerdo con los{" "}
+                        <IonRouterLink routerLink="/terms-and-conditions">
+                            Términos y Condiciones
+                        </IonRouterLink>
+                        .
+                    </span>
+                </div>
+                {termsError && (
+                    <IonNote color="danger" style={{ display: "block", fontSize: "0.8rem", marginTop: 4, paddingLeft: 4 }}>
+                        {termsError}
                     </IonNote>
                 )}
 

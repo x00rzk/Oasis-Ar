@@ -1,12 +1,11 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
-import Welcome from './pages/welcome';
+import Welcome from './pages/Welcome';
 import Description from './pages/description';
-import ARView from './pages/ARView';
-import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import ARView from './pages/ARView';
 
 
 
@@ -44,6 +43,7 @@ import './theme/app.css'
 
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
+import TermsAndConditions from './pages/TermsAndConditions';
 
 setupIonicReact();
 
@@ -51,14 +51,16 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/welcome" component={Welcome} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/terms-and-conditions" component={TermsAndConditions} />
         <Route exact path="/description" component={Description} />
         <Route exact path="/ar">
           <ARView />
         </Route>
         <Route exact path="/">
-          <Redirect to="/signup" />
+          <Redirect to="/login" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
