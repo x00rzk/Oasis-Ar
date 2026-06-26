@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "start:local": "ionic serve --no-open -- --mode local",
+    "start:external": "ionic serve --host 0.0.0.0 --no-open -- --mode external",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -39,6 +41,7 @@
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@types/three": "^0.184.1",
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-react": "^4.0.1",
     "cypress": "^13.5.0",

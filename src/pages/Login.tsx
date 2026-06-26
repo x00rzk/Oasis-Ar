@@ -26,7 +26,7 @@ const Login: React.FC = () => {
         dispatch({ type: "SET_LOADING", payload: true });
 
         try {
-            const response = await fetch("http://localhost/Oasis_Users_Backend/login.php", {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/login.php`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "email": email, "password": password }),
