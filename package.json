@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "start:local": "ionic serve --no-open -- --mode local",
+    "start:localhost": "ionic serve --no-open -- --mode localhost",
     "start:external": "ionic serve --host 0.0.0.0 --no-open -- --mode external",
     "dev": "vite",
     "build": "tsc && vite build",
